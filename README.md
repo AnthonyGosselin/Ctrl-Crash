@@ -1,3 +1,3 @@
-# Ctrl-Crash
+# Ctrl-Crash: Controllable Diffusion for Realistic Car Crashes
 
 Coming soon...
