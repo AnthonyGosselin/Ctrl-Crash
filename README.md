@@ -1,7 +1,5 @@
 # Ctrl-Crash: Controllable Diffusion for Realistic Car Crashes
 
-TODO: Add short description (short abstract) + figure
-
 ## Setting Up Dependencies
 
 ### Installing Dependencies
@@ -19,12 +17,8 @@ TODO: Add short description (short abstract) + figure
 
 ### Downloading Models
 
-- **Pretrained Model**:  
-  TODO: Provide the path or link to the pretrained model checkpoint.  
-  Example:  
-  ```bash
-  wget <URL_TO_PRETRAINED_MODEL> -O <LOCAL_PATH>
-  ```
+- **Pretrained Models**:  
+  Link to the pretrained model checkpoint: https://drive.google.com/drive/folders/1zME-pcQnW2ThZwrkZcVJV-_OhKtXMIRJ?usp=sharing
 
 - **HuggingFace Model**:  
   For video diffusion training, the script uses the model ID `stabilityai/stable-video-diffusion-img2vid-xt`. Ensure you have the necessary permissions and credentials to download it.
@@ -79,7 +73,3 @@ Note: The scripts use Accelerate for distributed training. Make sure you have th
   Tools for evaluating generated videos using metrics such as FVD and JEDi are described in the [eval README](src/eval/README.md). This includes instructions for generating videos, running evaluation scripts, and interpreting results.
 
 See the linked READMEs above for more information and advanced usage instructions.
-
-## Results
-TODO: Add some table results here
-TODO: Add citation bib
