@@ -1,5 +1,7 @@
 # 💥 Ctrl-Crash: Controllable Diffusion for Realistic Car Crashes
 
+Generate car crash videos conditioned from an initial frame and using bounding-box and crash type conditioning.
+
 <p align="center">
 <img src="etc/architecture_figure.png" height=350>
 </p>
