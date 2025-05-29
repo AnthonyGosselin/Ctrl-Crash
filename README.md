@@ -1,18 +1,23 @@
-# Ctrl-Crash: Controllable Diffusion for Realistic Car Crashes
+# 💥 Ctrl-Crash: Controllable Diffusion for Realistic Car Crashes
 
-## Setting Up Dependencies
+<p align="center">
+<img src="etc/architecture_figure.png" height=350>
+</p>
+
+## Setup
 
 ### Installing Dependencies
 
-1. Create a new conda environment:
+1. Clone repo
    ```bash
-   conda create -n ctrl-crash python=3.9
-   conda activate ctrl-crash
+   git clone https://github.com/CtrlCrash-Anonymous/Ctrl-Crash-Anonymous.git
+   cd Ctrl-Crash-Anonymous
    ```
 
-2. Install the required packages:
+2. Create a new conda environment:
    ```bash
-   pip install -r requirements.txt
+   conda create -f environment.yaml
+   conda activate ctrl-crash
    ```
 
 ### Downloading Models
@@ -23,21 +28,27 @@
 - **HuggingFace Model**:  
   For video diffusion training, the script uses the model ID `stabilityai/stable-video-diffusion-img2vid-xt`. Ensure you have the necessary permissions and credentials to download it.
 
-## Training Scripts
 
-The repository includes four training scripts for different scenarios:
+### Downloading Datasets
 
-1. **Box2Video Training (Action-Conditioned)**
-   - `box2video_train_action_multigpu.sh`: Multi-GPU training for action-conditioned video generation
-   - `box2video_train_action_singlegpu.sh`: Single-GPU training for action-conditioned video generation
-   - These scripts train a model that generates videos conditioned on bounding boxes and action types
-   - Key features: action conditioning, contiguous bbox masking, and validation on first step
+- **Dataset annotations**:  
+  Link to the dataset annotations: https://drive.google.com/drive/folders/1zME-pcQnW2ThZwrkZcVJV-_OhKtXMIRJ?usp=sharing. 
 
-2. **Video Diffusion Training**
+TODO: Show expected dataset structure
+
+## Run
+
+The repository training scripts for the two training stages:
+
+1. **Video Diffusion Training**
    - `mmau_train_video_diffusion_multigpu.sh`: Multi-GPU training for video diffusion
    - `mmau_train_video_diffusion_singlegpu.sh`: Single-GPU training for video diffusion
    - These scripts train a video diffusion model based on Stable Video Diffusion
-   - Key features: temporal block backpropagation and bbox dropout
+
+2. **ControlNet Training (Action-Conditioned)**
+   - `box2video_train_action_multigpu.sh`: Multi-GPU training for action-conditioned video generation
+   - `box2video_train_action_singlegpu.sh`: Single-GPU training for action-conditioned video generation
+   - These scripts train a model that generates videos conditioned on bounding boxes and action types
 
 ### Running the Scripts
 
@@ -53,8 +64,7 @@ The repository includes four training scripts for different scenarios:
 
 2. Make the script executable and run:
    ```bash
-   chmod +x box2video_train_action_multigpu.sh
-   ./box2video_train_action_multigpu.sh
+   sh scripts/box2video_train_action_multigpu.sh
    ```
 
 3. Monitor training:
@@ -64,12 +74,40 @@ The repository includes four training scripts for different scenarios:
 
 Note: The scripts use Accelerate for distributed training. Make sure you have the appropriate config files in the `config/` directory.
 
-## Additional Tools and Documentation
+## Inference and Evaluation
 
-- **Dataset Preprocessing**  
-  Scripts and instructions for preparing datasets (frame extraction, cropping, label generation, train/val split) are provided in the [preprocess README](src/preprocess/README.md). See that file for details on supported datasets and usage examples.
+**Generating Videos**
 
-- **Video Quality Evaluation**  
-  Tools for evaluating generated videos using metrics such as FVD and JEDi are described in the [eval README](src/eval/README.md). This includes instructions for generating videos, running evaluation scripts, and interpreting results.
+To generate a batch of videos run:
 
-See the linked READMEs above for more information and advanced usage instructions.
+```bash
+python run_gen_videos.py \
+    --model_path /path/to/model/checkpoint \
+    --output_path /path/to/output/videos \
+    --num_demo_samples 100 \
+    --max_output_vids 100 \
+    --num_gens_per_sample 1
+```
+
+See [eval README](src/eval/README.md) for more details.
+
+TODO: Notebook for interactive generation.
+
+**Evaluation**
+For computing evaluation metrics such as FVD over the generated videos run:
+
+```bash
+python video_quality_metrics_fvd_pair.py \
+    --vid_root /path/to/videos \
+    --samples 200 \
+    --num_frames 25 \
+    --downsample
+```
+
+See [eval README](src/eval/README.md) for more details and for other metrics.
+
+TODO: Show tables from paper
+
+## Dataset Preprocessing (Optional)
+
+Instead of downloading the preprocessing datasets, you may choose to preprocess them yourself. Scripts and instructions for preparing datasets (frame extraction, cropping, bounding-box label generation, train/val split) are provided in the [preprocess README](src/preprocess/README.md). See that file for details on supported datasets and usage examples.
