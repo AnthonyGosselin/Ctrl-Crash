@@ -89,7 +89,7 @@ python run_gen_videos.py \
     --num_gens_per_sample 1
 ```
 
-See [eval README](src/eval/README.md) for more details.
+See [eval README](src/eval/README.md#video-generation) for more details.
 
 TODO: Notebook for interactive generation.
 
