@@ -1,5 +1,7 @@
 # 💥 Ctrl-Crash: Controllable Diffusion for Realistic Car Crashes
 
+Generate car crash videos conditioned from an initial frame and using bounding-box and crash type conditioning.
+
 <p align="center">
 <img src="etc/architecture_figure.png" height=350>
 </p>
@@ -16,7 +18,7 @@
 
 2. Create a new conda environment:
    ```bash
-   conda create -f environment.yaml
+   conda env create -f environment.yaml
    conda activate ctrl-crash
    ```
 
@@ -89,7 +91,7 @@ python run_gen_videos.py \
     --num_gens_per_sample 1
 ```
 
-See [eval README](src/eval/README.md) for more details.
+See [eval README](src/eval/README.md#video-generation) for more details.
 
 TODO: Notebook for interactive generation.
 
