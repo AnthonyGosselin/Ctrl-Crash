@@ -18,7 +18,7 @@ Generate car crash videos conditioned from an initial frame and using bounding-b
 
 2. Create a new conda environment:
    ```bash
-   conda create -f environment.yaml
+   conda env create -f environment.yaml
    conda activate ctrl-crash
    ```
 
