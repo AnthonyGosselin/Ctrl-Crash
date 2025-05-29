@@ -1,9 +1,9 @@
 from src.datasets.merged_dataset import MergedDataset
 from src.datasets.russia_crash_dataset import RussiaCrashDataset
-from src.datasets.nuscenes_dataset import NuScenesDataset
 from src.datasets.dada2000_dataset import DADA2000Dataset
 from src.datasets.mmau_dataset import MMAUDataset
 from src.datasets.bdd100k_dataset import BDD100KDataset
+# from src.datasets.nuscenes_dataset import NuScenesDataset
 
     
 def create_dataset(dataset_name, **kwargs):

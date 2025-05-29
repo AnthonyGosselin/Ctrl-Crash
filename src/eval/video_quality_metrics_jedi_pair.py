@@ -20,7 +20,7 @@ def evaluate_vids(vid_root, samples=200, downsample_int=1, num_frames=25, gt_sam
     # Initialize JEDi metric
     jedi = JEDiMetric(feature_path=vid_root, 
                       test_feature_path=test_feature_path, 
-                      model_dir="/network/scratch/a/anthony.gosselin/Models")
+                      model_dir="/path/to/Models")
 
     # Create dataset and dataloader for generated videos
     gen_dataset = VideoDataset(vid_root, num_frames=num_frames, downsample_int=downsample_int)
@@ -55,7 +55,7 @@ def evaluate_vids(vid_root, samples=200, downsample_int=1, num_frames=25, gt_sam
     # Create dataset and dataloader for ground truth videos
     dataset_name = "mmau"
     train_set = False
-    val_dataset, _ = get_dataloader("/network/scratch/a/anthony.gosselin/Datasets", dataset_name, 
+    val_dataset, _ = get_dataloader("/path/to/Datasets", dataset_name, 
                                    if_train=train_set, clip_length=num_frames,
                                    batch_size=1, num_workers=0, shuffle=True, 
                                    image_height=320, image_width=512,

@@ -491,7 +491,7 @@ def pre_cache_dataset(dataset_root):
     # print("Done.")
     
 if __name__ == "__main__":
-    dataset_root = "/network/scratch/a/anthony.gosselin/Datasets"
+    dataset_root = "/path/to/Datasets"
     pre_cache_dataset(dataset_root)
 
     MMAUDataset(dataset_root, train=True)

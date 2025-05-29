@@ -255,7 +255,7 @@ class FVD:
             self.mu_real = mu_real
             self.sigma_real = sigma_real
             if save_stats_path is not None:
-                self.save_gt_stats(save_stats_path) #"/network/scratch/a/anthony.gosselin/CarCrashEvalSamples/gt_fvd_stats")
+                self.save_gt_stats(save_stats_path)
         
         mu_gen, sigma_gen = self._compute_stats(feats_fake)
         
@@ -445,8 +445,8 @@ if __name__ == '__main__':
                       help='Shuffle videos before evaluation')
     parser.add_argument('--collect_stats', action='store_true',
                       help='Collect and save ground truth statistics')
-    parser.add_argument('--data_root', type=str, default="/network/scratch/a/anthony.gosselin/Datasets",
-                      help='Root directory for datasets (default: /network/scratch/a/anthony.gosselin/Datasets)')
+    parser.add_argument('--data_root', type=str, required=True,
+                      help='Root directory for datasets')
     parser.add_argument('--action_type', type=int, default=None,
                       help='Action type to filter videos (0: normal, 1-4: crash types)')
     args = parser.parse_args()

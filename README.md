@@ -46,8 +46,8 @@ The repository training scripts for the two training stages:
    - These scripts train a video diffusion model based on Stable Video Diffusion
 
 2. **ControlNet Training (Action-Conditioned)**
-   - `box2video_train_action_multigpu.sh`: Multi-GPU training for action-conditioned video generation
-   - `box2video_train_action_singlegpu.sh`: Single-GPU training for action-conditioned video generation
+   - `controlnet_train_action_multigpu.sh`: Multi-GPU training for action-conditioned video generation
+   - `controlnet_train_action_singlegpu.sh`: Single-GPU training for action-conditioned video generation
    - These scripts train a model that generates videos conditioned on bounding boxes and action types
 
 ### Running the Scripts

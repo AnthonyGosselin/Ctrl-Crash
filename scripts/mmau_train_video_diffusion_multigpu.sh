@@ -8,6 +8,8 @@ PROJECT_NAME='<wandb_project_name>' # e.g., 'car_crash'
 WANDB_ENTITY='<wandb_username>'    # Your Weights & Biases username
 PRETRAINED_MODEL_PATH="stabilityai/stable-video-diffusion-img2vid-xt" # HuggingFace model ID
 
+# export HF_HOME=/path/to/root # Where to download SVD pretrained model
+
 # Create output directory
 mkdir -p $OUT_DIR
 

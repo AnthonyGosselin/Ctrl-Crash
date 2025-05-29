@@ -4,9 +4,9 @@ from src.eval.generate_samples import generate_samples
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate test samples from MMAU dataset")
-    parser.add_argument('--model_path', type=str, default="/network/scratch/a/anthony.gosselin/Results/ctrlv/box2video_apr30_actionbranch_ckpt30900_safecopy", help='Model checkpoint used for generation')
-    parser.add_argument('--data_root', type=str, default="/network/scratch/a/anthony.gosselin/Datasets", help='Dataset root path')
-    parser.add_argument('--output_path', type=str, default="/network/scratch/a/anthony.gosselin/CarCrashEvalSamples/default_batch", help='Video output path')
+    parser.add_argument('--model_path', type=str, required=True, help='Model checkpoint used for generation')
+    parser.add_argument('--data_root', type=str, required=True, help='Dataset root path')
+    parser.add_argument('--output_path', type=str, default="./output_videos", help='Video output path')
     parser.add_argument('--disable_null_model', action="store_true", default=False, help='For uncond noise preds, whether to use a null model')
     parser.add_argument('--use_factor_guidance', action="store_true", default=False, help='')
     parser.add_argument('--num_demo_samples', type=int, default=10, help='Number of samples to collect for generation')

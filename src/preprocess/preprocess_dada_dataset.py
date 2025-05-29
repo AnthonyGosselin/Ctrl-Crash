@@ -75,7 +75,7 @@ def downsample_and_crop_vid(video_path, output_dir, out_fps=12, crop_extents=Non
 
     print(f"Done '{sample_name}': {out_frame_count} frames, fps: {out_frame_count / (total_frames*1/org_fps)}")
     cap.release()
-    # create_video(sample_test, "/home/mila/a/anthony.gosselin/dev/Ctrl-Merge/dev/sample_test_vid")
+    # create_video(sample_test, "/path/to/sample_test_vid")
 
 
 def extract_frames(dataset_dir, out_directory, crop_extents=None, out_fps=12):
@@ -188,9 +188,9 @@ def make_train_val_split(out_directory):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process DADA2000 dataset')
-    parser.add_argument('--dataset_root', type=str, default="/network/scratch/a/anthony.gosselin/Datasets",
+    parser.add_argument('--dataset_root', type=str, required=True,
                       help='Root directory for datasets')
-    parser.add_argument('--dataset_dir', type=str, default="/network/scratch/a/anthony.gosselin/Datasets/DADA2000_full",
+    parser.add_argument('--dataset_dir', type=str, required=True,
                       help='Directory containing the DADA2000 dataset')
     parser.add_argument('--out_directory', type=str, default=None,
                       help='Output directory (defaults to {dataset_root}/dada2000_images_12fps)')

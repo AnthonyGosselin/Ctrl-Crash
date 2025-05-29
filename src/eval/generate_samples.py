@@ -109,7 +109,7 @@ def load_ctrlv_pipelines(model_dir, use_null_model=False, use_factor_guidance=Fa
     else:   
         
         # For null model prediction of uncond noise
-        null_model_path = "stabilityai/stable-video-diffusion-img2vid-xt" # Finetuned model: "/network/scratch/a/anthony.gosselin/Results/ctrlv/mmau_svd_apr2_v1/checkpoint-101100"
+        null_model_path = "stabilityai/stable-video-diffusion-img2vid-xt"
         null_model_unet = UNetSpatioTemporalConditionModel.from_pretrained(
             null_model_path,
             subfolder="unet",

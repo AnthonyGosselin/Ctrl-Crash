@@ -543,7 +543,7 @@ def main():
 
                     # Concatenate the `original_image_embeds` with the `noisy_latents`.
                     if not args.predict_bbox:
-                        conditional_latents = get_model_attr(unet, 'encode_bbox_frame')(conditional_latents, None)
+                        conditional_latents = conditional_latents.unsqueeze(1).repeat(1, args.clip_length, 1, 1, 1)
                     
                     concatenated_noisy_latents = torch.cat([inp_noisy_latents, conditional_latents], dim=2)
                     model_pred = unet(concatenated_noisy_latents,

@@ -129,9 +129,9 @@ def make_train_val_split(out_directory):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process Russia Car Crash dataset')
-    parser.add_argument('--dataset_root', type=str, default="/network/scratch/a/anthony.gosselin/Datasets",
+    parser.add_argument('--dataset_root', type=str, required=True,
                       help='Root directory for datasets')
-    parser.add_argument('--dataset_dir', type=str, default="/network/scratch/a/anthony.gosselin/Datasets/CarCrashRussia/dataset",
+    parser.add_argument('--dataset_dir', type=str, required=True,
                       help='Directory containing the Russia Car Crash dataset')
     parser.add_argument('--out_directory', type=str, default=None,
                       help='Output directory (defaults to {dataset_root}/preprocess_russia_crash)')

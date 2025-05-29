@@ -5,7 +5,6 @@ from diffusers.utils import BaseOutput, logging, replace_example_docstring
 from diffusers.utils.torch_utils import is_compiled_module, randn_tensor
 from typing import Callable, Dict, List, Tuple, Optional, Union
 import PIL.Image
-from ctrlv.utils import get_fourier_embeds_from_boundingbox
 from diffusers.pipelines.stable_video_diffusion.pipeline_stable_video_diffusion import (
     tensor2vid,
     StableVideoDiffusionPipelineOutput,
@@ -204,15 +203,6 @@ class VideoDiffusionPipeline(StableVideoDiffusionPipeline_original):
                                                 self.do_classifier_free_guidance)
             image_latents[:,0:num_cond_bbox_frames,::] = cond_latents[:,0:num_cond_bbox_frames,::]
             image_latents[:,-1,::]=cond_latents[:,-1,::]
-
-        # get bbox conditioning
-        # encoded_objects = get_fourier_embeds_from_boundingbox(bbox_conditions, image_size=original_size, dropout_prob=0.0, generator=generator,)[:1,::]
-        # if self.do_classifier_free_guidance:
-        #     _, image_latents_cond = image_latents.chunk(2)
-        #     image_latents_cond = self.unet.encode_bbox_frame(image_latents_cond, encoded_objects)
-        #     image_latents = torch.cat([torch.zeros_like(image_latents_cond), image_latents_cond])
-        # else:
-        #     image_latents = self.unet.encode_bbox_frame(image_latents, encoded_objects)
 
         # 5. Get Added Time IDs
         added_time_ids = self._get_add_time_ids(

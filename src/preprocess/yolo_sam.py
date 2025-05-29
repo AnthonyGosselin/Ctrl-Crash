@@ -519,23 +519,13 @@ if __name__ == "__main__":
     sam2_cfg = "./configs/sam2.1/sam2.1_hiera_b+.yaml"
 
     yolo_sam = YoloSamProcessor(yolo_ckpt, sam2_ckpt, sam2_cfg)
-    # output_dir = f"/home/mila/a/anthony.gosselin/dev/Ctrl-Merge/dev/dataset/yolo_sam_out"
-    output_dir = f"/home/mila/a/anthony.gosselin/dev/Ctrl-Merge/dev/dataset/yolo_sam_bbox_test"
+    output_dir = f"/path/to/output_dir"
     bboxes_out_dir = os.path.join(output_dir, "bboxes")
     labels_out_dir = os.path.join(output_dir, "json")
     os.makedirs(bboxes_out_dir, exist_ok=True)
     os.makedirs(labels_out_dir, exist_ok=True)
 
-    # Load videos
-    # videos = ["43_133_end"] #["w10_101", "w10_10", "w10_19", "w6_87",]
-    # video_dir = f"/network/scratch/a/anthony.gosselin/Datasets/preprocess_russia_crash/images/train/{video_name}"
-    # video_dir_root = f"/home/mila/a/anthony.gosselin/dev/Ctrl-Merge/dev/dataset/video_samples"
-    # video_dir_root = f"/home/mila/a/anthony.gosselin/dev/Ctrl-Merge/dev/dataset/preprocess_dada2000/images/val"
-
-    # video_dir_root = f"/network/scratch/a/anthony.gosselin/Datasets/bbox_test_subset3"
-    # videos = sorted(os.listdir(video_dir_root))
-
-    video_dir_root = f"/network/scratch/a/anthony.gosselin/Datasets/dada2000_images_12fps/images"
+    video_dir_root = f"/path/to/dada2000_images_12fps/images"
     videos = ['8_90038', '8_90002', '10_90019', '10_90045', '10_90027', '10_90029', '10_90082', '10_90021', '10_90064', '10_90083', '10_90141', '10_90139', '10_90034', '10_90134', '10_90056', '10_90169', '10_90040', '11_90109', '11_90162', '11_90202', '11_90142', '11_90180', '11_90161', '11_90091', '11_90189', '11_90002', '11_90192', '11_90221', '11_90181', '12_90007', '12_90042', '13_90002', '13_90008', '13_90007', '14_90012', '14_90018', '14_90014', '14_90027', '24_90017', '24_90005', '24_90006', '24_90011', '42_90021', '43_90013', '48_90078', '48_90031', '48_90001', '48_90075', '49_90030', '49_90021', '61_90016', '61_90004']
 
     for video_name in tqdm(videos):

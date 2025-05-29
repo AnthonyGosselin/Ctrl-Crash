@@ -71,7 +71,7 @@ def crop_images(images_dir_path, output_dir_path, crop_extents=None):
 
     print(f"Done '{out_vid_name}': {src_height}x{src_width}, {out_frame_count} frames")
 
-    # create_video(sample_test, "/home/mila/a/anthony.gosselin/dev/Ctrl-Merge/dev/sample_test_vid", fps=6)
+    # create_video(sample_test, "path/to/sample_test_vid", fps=6)
 
 
 def extract_frames(dataset_dir, out_directory, crop_extents=None, specific_videos=None):
@@ -189,7 +189,7 @@ def make_train_val_split(out_directory):
                     
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process CAP dataset')
-    parser.add_argument('--dataset_root', type=str, default="/network/scratch/a/anthony.gosselin/Datasets",
+    parser.add_argument('--dataset_root', type=str, required=True,
                       help='Root directory for datasets')
     parser.add_argument('--dataset_dir', type=str, default="/network/scratch/l/luis.lara/dev/MM-AU/CAP-DATA",
                       help='Directory containing the CAP dataset')

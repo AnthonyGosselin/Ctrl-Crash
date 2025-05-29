@@ -24,10 +24,6 @@ class UNetSpatioTemporalConditionModel(UNetSpatioTemporalConditionModel_orig, Pe
     def get_parameters_with_grad(self):
         return [param for param in self.parameters() if param.requires_grad]
     
-    # def encode_bbox_frame(self, frame_latent, encoded_objects):
-    #     # TODO: Remove this function or rename it... it doesn't make sense since it is just a resize function and we are not calling it with the bbox latents, but rather then real image latents
-    #     return frame_latent.unsqueeze(1).repeat(1, self.config.num_frames, 1, 1, 1)
-    
     def forward(
         self,
         sample: torch.FloatTensor,
