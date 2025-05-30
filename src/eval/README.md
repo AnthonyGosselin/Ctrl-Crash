@@ -15,6 +15,7 @@ Before running the evaluation scripts, you'll need to generate video samples usi
 python run_gen_videos.py \
     --model_path /path/to/model/checkpoint \
     --output_path /path/to/output/videos \
+    --data_root /path/to/dataset_root \
     --num_demo_samples 10 \
     --max_output_vids 200 \
     --num_gens_per_sample 1 \
