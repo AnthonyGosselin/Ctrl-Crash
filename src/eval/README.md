@@ -17,7 +17,8 @@ python run_gen_videos.py \
     --output_path /path/to/output/videos \
     --num_demo_samples 10 \
     --max_output_vids 200 \
-    --num_gens_per_sample 1
+    --num_gens_per_sample 1 \
+    --eval_output
 ```
 
 ### Key Generation Arguments
