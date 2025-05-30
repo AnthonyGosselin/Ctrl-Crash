@@ -169,10 +169,10 @@ def main():
                         model.save_pretrained(os.path.join(output_dir, "unet"), safe_serialization=False)
 
                         # Also save other (frozen) components, just so they are found in the same checkpoint
-                        vae.save_pretrained(os.path.join(output_dir, "vae"), safe_serialization=False)
-                        feature_extractor.save_pretrained(os.path.join(output_dir, "feature_extractor"), safe_serialization=False)
-                        image_encoder.save_pretrained(os.path.join(output_dir, "image_encoder"), safe_serialization=False)
-                        noise_scheduler.save_pretrained(os.path.join(output_dir, "scheduler"), safe_serialization=False)
+                        # vae.save_pretrained(os.path.join(output_dir, "vae"), safe_serialization=False)
+                        # feature_extractor.save_pretrained(os.path.join(output_dir, "feature_extractor"), safe_serialization=False)
+                        # image_encoder.save_pretrained(os.path.join(output_dir, "image_encoder"), safe_serialization=False)
+                        # noise_scheduler.save_pretrained(os.path.join(output_dir, "scheduler"), safe_serialization=False)
 
                         # make sure to pop weight so that corresponding model is not saved again
                         weights.pop()

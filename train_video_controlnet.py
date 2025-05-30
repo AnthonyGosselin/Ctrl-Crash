@@ -3,6 +3,7 @@ write_basic_config()
 import warnings
 
 import logging
+import sys
 import os
 import math
 import shutil
@@ -12,8 +13,7 @@ from einops import rearrange
 import accelerate
 from collections import defaultdict
 import time
-import cv2
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
 
 from tqdm.auto import tqdm
 
@@ -80,10 +80,11 @@ def save_models_accelerate(models, weights, output_dir, vae, feature_extractor, 
             raise Exception("Only UNetSpatioTemporalConditionModel and ControlNetModel are supported for saving.")
 
         # Also save other (frozen) components, just so they are found in the same checkpoint
-        vae.save_pretrained(os.path.join(output_dir, "vae"), safe_serialization=False)
-        feature_extractor.save_pretrained(os.path.join(output_dir, "feature_extractor"), safe_serialization=False)
-        image_encoder.save_pretrained(os.path.join(output_dir, "image_encoder"), safe_serialization=False)
-        noise_scheduler.save_pretrained(os.path.join(output_dir, "scheduler"), safe_serialization=False)
+        # vae.save_pretrained(os.path.join(output_dir, "vae"), safe_serialization=False)
+        # feature_extractor.save_pretrained(os.path.join(output_dir, "feature_extractor"), safe_serialization=False)
+        # image_encoder.save_pretrained(os.path.join(output_dir, "image_encoder"), safe_serialization=False)
+        # noise_scheduler.save_pretrained(os.path.join(output_dir, "scheduler"), safe_serialization=False)
+        
         # make sure to pop weight so that corresponding model is not saved again
         weights.pop()
 
@@ -127,43 +128,44 @@ class TrainVideoControlnet:
 
 
     def load_models_from_pretrained(self):
-        print("HARDCODING UNET VARIANT TO NONE, set to 'fp16' when training from stability's model")
-        unet_variant = "fp16" if "stabilityai" in self.args.pretrained_model_name_or_path else None
-        
+    
         # Load scheduler, tokenizer and models.
         unet = UNetSpatioTemporalConditionModel.from_pretrained(
             self.args.pretrained_model_name_or_path,
             subfolder="unet",
-            variant=unet_variant,
+            variant=None,
             low_cpu_mem_usage=True,
             num_frames=self.args.clip_length
         )
+
+        # Pretrained (frozen) models from stable-video-diffusion
+        model_path = "stabilityai/stable-video-diffusion-img2vid-xt"
+        variant = "fp16"
         vae = AutoencoderKLTemporalDecoder.from_pretrained(
-            self.args.pretrained_model_name_or_path,
+            model_path,
             subfolder="vae",
             revision=self.args.revision,
-            variant=unet_variant
+            variant=variant
         )
         image_encoder = CLIPVisionModelWithProjection.from_pretrained(
-            self.args.pretrained_model_name_or_path,
+            model_path,
             subfolder="image_encoder",
             revision=self.args.revision,
-            variant=unet_variant
+            variant=variant
         )
         feature_extractor = CLIPImageProcessor.from_pretrained(
-            self.args.pretrained_model_name_or_path,
+            model_path,
             subfolder="feature_extractor",
             revision=self.args.revision
         )
         noise_scheduler = EulerDiscreteScheduler.from_pretrained(
-            self.args.pretrained_model_name_or_path,
+            model_path,
             subfolder="scheduler"
         )
-
         null_model_unet = UNetSpatioTemporalConditionModel.from_pretrained(
-            "stabilityai/stable-video-diffusion-img2vid-xt",
+            model_path,
             subfolder="unet",
-            variant=unet_variant,
+            variant=None,
             low_cpu_mem_usage=True,
             num_frames=self.args.clip_length
         )
@@ -470,6 +472,14 @@ class TrainVideoControlnet:
 
     def load_pipeline(self):
         # NOTE: Pipeline used for inference at validation step, can change for different pipelines
+
+        # Compatibility with pretrained models from ctrlv
+        import src
+        import src.models.unet_spatio_temporal_condition as unet_module
+        sys.modules['ctrlv'] = src
+        sys.modules['ctrlv.models'] = src.models
+        sys.modules['ctrlv.models.unet_spatio_temporal_condition'] = unet_module
+
         pipeline = StableVideoControlNullModelPipeline.from_pretrained(self.args.pretrained_model_name_or_path,
                                                         unet=self.unwrap_model(self.unet), 
                                                         image_encoder=self.unwrap_model(self.image_encoder),

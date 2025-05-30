@@ -8,7 +8,7 @@ PROJECT_NAME='<wandb_project_name>' # e.g., 'car_crash'
 WANDB_ENTITY='<wandb_username>'    # Your Weights & Biases username
 PRETRAINED_MODEL_PATH="<path/to/pretrained/model>" # e.g., "/path/to/pretrained/checkpoint"
 
-# export HF_HOME=/path/to/root # Where the SVD pretrained model is downloaded
+# export HF_HOME=/path/to/root # Where the SVD pretrained models are/will be downloaded
 
 # Create output directory
 mkdir -p $OUT_DIR

@@ -1,5 +1,6 @@
 
 from diffusers.loaders import PeftAdapterMixin
+from diffusers import ModelMixin
 
 from diffusers import UNetSpatioTemporalConditionModel as UNetSpatioTemporalConditionModel_orig
 import torch
@@ -8,8 +9,8 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from diffusers.configuration_utils import ConfigMixin, register_to_config
 from diffusers.models.unets.unet_spatio_temporal_condition import UNetSpatioTemporalConditionOutput
 
-
-class UNetSpatioTemporalConditionModel(UNetSpatioTemporalConditionModel_orig, PeftAdapterMixin):
+# NOTE: Only added ModelMixin to make it compatible with some older version of diffusers when using from_pretrained
+class UNetSpatioTemporalConditionModel(UNetSpatioTemporalConditionModel_orig, PeftAdapterMixin, ModelMixin):
     
     def enable_grad(self, temporal_transformer_block=True, all=False):
         parameters_list = []
