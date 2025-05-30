@@ -86,9 +86,11 @@ To generate a batch of videos run:
 python run_gen_videos.py \
     --model_path /path/to/model/checkpoint \
     --output_path /path/to/output/videos \
+    --data_root /path/to/dataset_root \
     --num_demo_samples 100 \
     --max_output_vids 100 \
-    --num_gens_per_sample 1
+    --num_gens_per_sample 1 \
+    --eval_output
 ```
 
 See [eval README](src/eval/README.md#video-generation) for more details.

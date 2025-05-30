@@ -113,7 +113,7 @@ def load_ctrlv_pipelines(model_dir, use_null_model=False, use_factor_guidance=Fa
         null_model_unet = UNetSpatioTemporalConditionModel.from_pretrained(
             null_model_path,
             subfolder="unet",
-            variant=unet_variant,
+            variant=None,
             low_cpu_mem_usage=True,
             num_frames=CLIP_LENGTH
         )
