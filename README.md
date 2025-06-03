@@ -41,7 +41,9 @@ Generate car crash videos conditioned from an initial frame and using bounding-b
 ### Downloading Datasets
 
 - **Dataset annotations**:  
-  Link to the dataset annotations: https://drive.google.com/drive/folders/1zME-pcQnW2ThZwrkZcVJV-_OhKtXMIRJ?usp=sharing. 
+  Link to the dataset annotations: https://drive.google.com/drive/folders/1zME-pcQnW2ThZwrkZcVJV-_OhKtXMIRJ?usp=sharing.
+
+  The full MM-AU dataset can be downloaded from: https://huggingface.co/datasets/JeffreyChou/MM-AU
 
 TODO: Show expected dataset structure
 
