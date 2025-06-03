@@ -115,3 +115,6 @@ TODO: Show tables from paper
 ## Dataset Preprocessing (Optional)
 
 Instead of downloading the preprocessing datasets, you may choose to preprocess them yourself. Scripts and instructions for preparing datasets (frame extraction, cropping, bounding-box label generation, train/val split) are provided in the [preprocess README](src/preprocess/README.md). See that file for details on supported datasets and usage examples.
+
+
+**NOTE**: This repository is actively being updated, changes and bug fixes can be expected in the days/weeks to come
