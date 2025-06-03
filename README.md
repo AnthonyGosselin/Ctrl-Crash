@@ -1,5 +1,7 @@
 # 💥 Ctrl-Crash: Controllable Diffusion for Realistic Car Crashes
 
+[🌐 Website](https://anthonygosselin.github.io/Ctrl-Crash-ProjectPage/) | [📄 Paper](https://arxiv.org/abs/2506.00227) | [🤗 HF](https://huggingface.co/AnthonyGosselin/Ctrl-Crash) | [🔗 Datasets](https://drive.google.com/drive/folders/1KUK121nhS-3HapypGbcg7D-JAolqes5h)
+
 Generate car crash videos conditioned from an initial frame and using bounding-box and crash type conditioning.
 
 <p align="center">
