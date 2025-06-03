@@ -47,9 +47,9 @@ Generate car crash videos conditioned from an initial frame and using bounding-b
 
   The full MM-AU dataset can be downloaded from: https://huggingface.co/datasets/JeffreyChou/MM-AU
 
-   ### Dataset Preprocessing
-   
-   Instead of downloading the preprocessing datasets (coming soon), you may choose to preprocess them yourself. Scripts and instructions for preparing datasets (frame extraction, cropping, bounding-box label generation, train/val split) are provided in the [preprocess README](src/preprocess/README.md). See that file for details on supported datasets and usage examples.
+### Dataset Preprocessing
+
+Instead of downloading the preprocessing datasets (coming soon), you may choose to preprocess them yourself. Scripts and instructions for preparing datasets (frame extraction, cropping, bounding-box label generation, train/val split) are provided in the [preprocess README](src/preprocess/README.md). See that file for details on supported datasets and usage examples.
 
 TODO: Show expected dataset structure
 
