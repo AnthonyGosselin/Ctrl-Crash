@@ -3,6 +3,13 @@
 Generate car crash videos conditioned from an initial frame and using bounding-box and crash type conditioning.
 
 <p align="center">
+   <img src="etc/genvid_57_11_04453.gif" width="330">
+   <img src="etc/genvid_64_48_08386.gif" width="330">
+   <img src="etc/genvid_87_21_08924.gif" width="330">
+</p>
+(Above) Generated crash videos
+
+<p align="center">
 <img src="etc/architecture_figure.png" height=350>
 </p>
 
@@ -109,8 +116,6 @@ python video_quality_metrics_fvd_pair.py \
 ```
 
 See [eval README](src/eval/README.md) for more details and for other metrics.
-
-TODO: Show tables from paper
 
 ## Dataset Preprocessing (Optional)
 
